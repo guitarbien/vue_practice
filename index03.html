@@ -10,7 +10,7 @@
         <li v-for="name in names" v-text="name"></li>
     </ul>
     <input type="text" v-model="newName">
-    <button v-on:click="addName">Add Name</button>
+    <button @click="addName">Add Name</button>
 </div>
 
 <script src="https://unpkg.com/vue@2.2.4"></script>
