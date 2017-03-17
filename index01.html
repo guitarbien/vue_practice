@@ -9,12 +9,16 @@
     <input type="text" id="input">
 </div>
 
+<script src="https://unpkg.com/vue@2.2.4"></script>
 <script type="text/javascript">
     let data = {
         message: 'hello-world'
     };
 
-    document.querySelector('#input').value = data.message;
+    new Vue({
+        el: '#root',
+        data: data
+    });
 </script>
 </body>
 </html>
