@@ -8,7 +8,8 @@
 <body>
 
 <div id="root" class="container">
-    <modal></modal>
+    <modal v-if="showModal"></modal>
+    <button @click="showModal = true">Show Modal</button>
 </div>
 
 <script src="https://unpkg.com/vue@2.2.4"></script>
