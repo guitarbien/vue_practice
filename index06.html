@@ -7,6 +7,9 @@
 
 <div id="root">
     <h1>{{ reverseMessage }}</h1>
+    <ul>
+        <li v-for="task in tasks" v-text="task.description"></li>
+    </ul>
 </div>
 
 <script src="https://unpkg.com/vue@2.2.4"></script>
@@ -14,7 +17,15 @@
     var app = new Vue({
         el: '#root',
         data: {
-            message: 'Hello World'
+            message: 'Hello World',
+            tasks: [
+                { description: 'go to the store', completed: true },
+                { description: 'finish screencast', completed: false },
+                { description: 'make donation', completed: false },
+                { description: 'clear inbox', completed: false },
+                { description: 'make dinner', completed: false },
+                { description: 'clean room', completed: true },
+            ]
         },
         computed: {
             reverseMessage: function() {
