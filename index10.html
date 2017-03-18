@@ -8,7 +8,7 @@
 <body>
 
 <div id="root" class="container">
-    <modal v-if="showModal"></modal>
+    <modal v-if="showModal" @close="showModal = false"></modal>
     <button @click="showModal = true">Show Modal</button>
 </div>
 

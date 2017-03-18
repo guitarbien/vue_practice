@@ -12,7 +12,7 @@ Vue.component('modal', {
                   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </div>
           </div>
-          <button class="modal-close"></button>
+          <button @click="$emit('close')" class="modal-close"></button>
         </div>
     `
 });
