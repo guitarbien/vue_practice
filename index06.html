@@ -7,8 +7,13 @@
 
 <div id="root">
     <h1>{{ reverseMessage }}</h1>
+    <h2>All tasks</h2>
     <ul>
-        <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li>
+        <li v-for="task in tasks" v-text="task.description"></li>
+    </ul>
+    <h2>Incomplete tasks</h2>
+    <ul>
+        <li v-for="task in incompleteTasks" v-text="task.description"></li>
     </ul>
 </div>
 
@@ -30,6 +35,11 @@
         computed: {
             reverseMessage: function() {
                 return this.message.split('').reverse().join('');
+            },
+            incompleteTasks: function() {
+                return this.tasks.filter(function(task) {
+                    return !task.completed;
+                });
             }
         }
     });
