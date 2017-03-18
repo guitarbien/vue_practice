@@ -2,10 +2,15 @@
 <html>
 <head>
     <title></title>
+    <style type="text/css">
+        .color-red { color: red; }
+        .color-blue { color: blue; }
+    </style>
 </head>
 <body>
 
 <div id="root">
+<h1 :class="className">Hollo World</h1>
 <button :title="title">Hover Over Me</button>
 </div>
 
@@ -14,7 +19,8 @@
     var app = new Vue({
         el: '#root',
         data: {
-            title: 'Now the title is being set through javascript.'
+            title: 'Now the title is being set through javascript.',
+            className: 'color-red'
         }
     });
 </script>
