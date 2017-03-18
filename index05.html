@@ -13,6 +13,7 @@
 <h1 :class="{ 'color-red':is_red }">Hollo World</h1>
 <button :title="title">Hover Over Me</button>
 <button @click="toggleClass">Change Color</button>
+<button :disabled="is_disabled" @click="disableMe">Click Me</button>
 </div>
 
 <script src="https://unpkg.com/vue@2.2.4"></script>
@@ -22,11 +23,15 @@
         data: {
             title: 'Now the title is being set through javascript.',
             className: 'color-red',
-            is_red: true
+            is_red: true,
+            is_disabled: false
         },
         methods: {
             toggleClass: function() {
                 this.is_red = !this.is_red;
+            },
+            disableMe: function() {
+                this.is_disabled = true;
             }
         }
     });
