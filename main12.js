@@ -4,7 +4,7 @@ Vue.component('coupon', {
     `,
     methods: {
         onCouponApplied() {
-            alert('gogo');
+            this.$emit('applied');
         }
     }
 });
