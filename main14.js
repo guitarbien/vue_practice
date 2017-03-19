@@ -9,7 +9,7 @@ Vue.component('modal', {
                 </header>
 
                 <section class="modal-card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis minus iure ipsa quidem! Nulla in voluptate iure natus commodi eos, assumenda quod aliquam fuga modi cum et, rerum saepe minima.
+                    <slot></slot>
                 </section>
 
                 <footer class="modal-card-foot">
