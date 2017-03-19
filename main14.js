@@ -9,12 +9,13 @@ Vue.component('modal', {
                 </header>
 
                 <section class="modal-card-body">
-                    <slot></slot>
+                    <slot>Default content</slot>
                 </section>
 
                 <footer class="modal-card-foot">
-                    <a class="button is-success">Save changes</a>
-                    <a class="button">Cancel</a>
+                    <slot name="footer">
+                        <a class="button is-success">Okay</a>
+                    </slot>
                 </footer>
             </div>
         </div>
