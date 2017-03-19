@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
+    <style type="text/css">body { padding-top: 40px; }</style>
+</head>
+<body>
+
+<div id="root" class="container">
+    <progress-view inline-template>
+        <div>
+            <h1>Your Progress Through This Course Is {{ completionRate }} %</h1>
+            <button @click="completionRate += 10">Add Rate</button>
+        </div>
+    </progress-view>
+</div>
+
+<script src="https://unpkg.com/vue@2.2.4"></script>
+<script src="main15.js"></script>
+</body>
+</html>
