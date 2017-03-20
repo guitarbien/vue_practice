@@ -3,9 +3,22 @@
 <head>
     <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
-    <style type="text/css">body { padding-top: 40px; }</style>
+
 </head>
 <body>
+
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        v-model、{{}}
+      </h1>
+      <h2 class="subtitle">
+        input 修改內容，外部 text 即時同步
+      </h2>
+    </div>
+  </div>
+</section>
 
 <div id="root" class="container">
     <input type="text" class="input" id="input" v-model="message">
