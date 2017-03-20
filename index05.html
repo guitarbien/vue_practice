@@ -11,11 +11,11 @@
 </head>
 <body>
 
-<div id="root">
+<div id="root" class="container">
 <h1 :class="{ 'color-red':is_red }">Hollo World</h1>
-<button :title="title">Hover Over Me</button>
-<button @click="toggleClass">Change Color</button>
-<button :disabled="is_disabled" @click="disableMe">Click Me</button>
+<a class="button is-info" :title="title">Hover Over Me</a>
+<a class="button is-success" @click="toggleClass">Change Color</a>
+<a class="button" :disabled="is_disabled" @click="disableMe">Click Me</a>
 </div>
 
 <script src="https://unpkg.com/vue@2.2.4"></script>

@@ -7,16 +7,20 @@
 </head>
 <body>
 
-<div id="root">
-    <h1>{{ reverseMessage }}</h1>
-    <h2>All tasks</h2>
-    <ul>
-        <li v-for="task in tasks" v-text="task.description"></li>
-    </ul>
-    <h2>Incomplete tasks</h2>
-    <ul>
-        <li v-for="task in incompleteTasks" v-text="task.description"></li>
-    </ul>
+<div id="root" class="container">
+    <div class="box">
+        <h1>{{ reverseMessage }}</h1>
+        <h2>All tasks</h2>
+        <dl>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </dl>
+    </div>
+    <div class="box">
+        <h2>Incomplete tasks</h2>
+        <dl>
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+        </dl>
+    </div>
 </div>
 
 <script src="https://unpkg.com/vue@2.2.4"></script>
