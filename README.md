@@ -11,3 +11,4 @@ Following the series: [Learn Vue2: Step By Step](https://laracasts.com/series/le
 12. [component 事件傳遞到 parent 自定義事件](https://guitarbien.github.io/vue_practice/index12.html)
 14. [以包含 header, body, footer 的 modal box 來套用 named slot](https://guitarbien.github.io/vue_practice/index14.html)
 15. [若 component template 只有一處使用到，也可嘗試用 inline-template](https://guitarbien.github.io/vue_practice/index15.html)
+16. [使用 vue-cli 配 webpack-simple template 來建立專案](https://guitarbien.github.io/vue_practice/index16.html)
