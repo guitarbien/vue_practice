@@ -1,0 +1,25 @@
+<template>
+    <div>{{ username }}</div>
+</template>
+
+<script>
+var axios = require('axios');
+
+export default {
+  name: 'app',
+  data () {
+    return {
+        username: 'aa'
+    }
+  },
+  mounted () {
+    axios.get('https://api.github.com/users/guitarbien')
+        .then(response => {
+           this.username = response.data.name;
+        });
+    }
+}
+</script>
+
+<style>
+</style>

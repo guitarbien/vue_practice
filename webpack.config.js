@@ -5,7 +5,8 @@ module.exports = {
   entry:
   {
     main16: './src/main16.js',
-    main17: './src/main17.js'
+    main17: './src/main17.js',
+    main18: './src/main18.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
