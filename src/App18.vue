@@ -1,5 +1,5 @@
 <template>
-    <div>{{ username }}</div>
+    <div class="box">{{ username }}</div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
   name: 'app',
   data () {
     return {
-        username: 'aa'
+        username: ''
     }
   },
   mounted () {
