@@ -16,7 +16,7 @@
               <i class="fa fa-check"></i>
             </span>
           </p>
-          <!-- <p class="help is-danger">The name field is invalid</p> -->
+          <p class="help is-danger" v-text="errors.get('name')"></p>
         </div>
 
         <div class="field">
@@ -28,7 +28,7 @@
               <i class="fa fa-warning"></i>
             </span>
           </p>
-          <!-- <p class="help is-danger">The description field is invalid</p> -->
+          <p class="help is-danger" v-text="errors.get('description')"></p>
         </div>
 
         <div class="field is-grouped">
@@ -52,31 +52,48 @@ var MockAdapter = require('axios-mock-adapter');
 var mock = new MockAdapter(axios);
 
 mock.onPost('/projects').reply(422, {
-    errors: {
         name: ["The name field is required."],
         description: ["The description field is required."]
-    }
 });
+
+class Errors {
+    constructor() {
+        this.errors = {};
+    }
+
+    get(field) {
+        if (this.errors[field])
+        {
+          return this.errors[field][0];
+        }
+    }
+
+    record(errors) {
+        this.errors = errors;
+    }
+}
 
 export default {
   name: 'app',
   components: { SectionHero },
   data () {
-    return {
-        name: '',
-        description: '',
-        errors: {}
-    }
+      return {
+          name: '',
+          description: '',
+          errors: new Errors()
+      }
   },
   methods: {
-    onSubmit () {
-        // axios.post('/projects', this.$data);
-        axios.post('/projects', {
-            name: this.name,
-            description: this.description
-        })
-        .catch(error => console.log(error.response.data));
-    }
+      onSubmit () {
+          // axios.post('/projects', this.$data);
+          axios.post('/projects', {
+              name: this.name,
+              description: this.description
+          })
+          .then(response => alert('Success'))
+          // .catch(error => console.log(error.response.data));
+          .catch(error => this.errors.record(error.response.data));
+      }
   }
 }
 </script>
