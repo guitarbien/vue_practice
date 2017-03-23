@@ -2,10 +2,10 @@
   <div>
     <SectionHero>
       <template slot="title">Object-Oriented Forms</template>
-      <template slot="subtitle">ES6 Class</template>
+      <template slot="subtitle">ES6 Class、<a href="https://vuejs.org/v2/guide/forms.html#Modifiers">Event Modifier</a></template>
     </SectionHero>
 
-    <form action="">
+    <form action="" @submit.prevent="onSubmit">
       <div class="box">
         <div class="field">
           <label class="label">Project Name</label>
@@ -52,7 +52,18 @@ export default {
   data () {
     return {
         name: '',
-        description: ''
+        description: '',
+        errors: {}
+    }
+  },
+  methods: {
+    onSubmit () {
+        // axios.post('/projects', this.$data);
+        axios.post('/projects', {
+            name: this.name,
+            description: this.description
+        })
+        .catch(error => console.log(error.response.data));
     }
   }
 }
