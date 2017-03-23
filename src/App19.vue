@@ -45,6 +45,18 @@
 <script>
 import SectionHero from './components/SectionHero.vue';
 var axios = require('axios');
+var MockAdapter = require('axios-mock-adapter');
+
+
+// This sets the mock adapter on the default instance
+var mock = new MockAdapter(axios);
+
+mock.onPost('/projects').reply(422, {
+    errors: {
+        name: ["The name field is required."],
+        description: ["The description field is required."]
+    }
+});
 
 export default {
   name: 'app',
