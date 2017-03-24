@@ -74,27 +74,26 @@ class Errors {
 }
 
 export default {
-  name: 'app',
-  components: { SectionHero },
-  data () {
-      return {
-          name: '',
-          description: '',
-          errors: new Errors()
-      }
-  },
-  methods: {
-      onSubmit () {
-          // axios.post('/projects', this.$data);
-          axios.post('/projects', {
-              name: this.name,
-              description: this.description
-          })
-          .then(response => alert('Success'))
-          // .catch(error => console.log(error.response.data));
-          .catch(error => this.errors.record(error.response.data));
-      }
-  }
+    name: 'app',
+    components: { SectionHero },
+    data () {
+        return {
+            name: '',
+            description: '',
+            errors: new Errors()
+        }
+    },
+    methods: {
+        onSubmit () {
+            // axios.post('/projects', this.$data);
+            axios.post('/projects', {
+                name: this.name,
+                description: this.description
+            })
+            .then(response => alert('Success'))
+            .catch(error => this.errors.record(error.response.data));
+        }
+    }
 }
 </script>
 
