@@ -51,9 +51,12 @@ var MockAdapter = require('axios-mock-adapter');
 // This sets the mock adapter on the default instance
 var mock = new MockAdapter(axios);
 
-mock.onPost('/projects').reply(422, {
-        name: ["The name field is required."],
-        description: ["The description field is required."]
+// mock.onPost('/projects').reply(422, {
+//     name: ["The name field is required."],
+//     description: ["The description field is required."]
+// });
+mock.onPost('/projects').reply(200, {
+    message: "Added"
 });
 
 class Errors {
@@ -102,8 +105,13 @@ export default {
                 name: this.name,
                 description: this.description
             })
-            .then(response => alert('Success'))
+            .then(this.onSuccess)
             .catch(error => this.errors.record(error.response.data));
+        },
+        onSuccess(response) {
+            alert(response.data.message);
+            this.name = '';
+            this.description = '';
         }
     },
     computed: {
