@@ -11,7 +11,7 @@
           <label class="label">Project Name</label>
           <p class="control has-icon has-icon-right">
           <!--  is-success -->
-            <input class="input" type="text" name="name" placeholder="Project Name" v-model="name">
+            <input class="input" :class="{ 'is-danger': nameIsDanger }" type="text" name="name" placeholder="Project Name" v-model="name">
             <span class="icon is-small">
               <i class="fa fa-check"></i>
             </span>
@@ -23,7 +23,7 @@
           <label class="label">Project Description</label>
           <p class="control has-icon has-icon-right">
           <!-- is-danger -->
-            <input class="input" type="text" name="description" placeholder="Project Description" v-model="description">
+            <input class="input" :class="{ 'is-danger': descriptionIsDanger }" type="text" name="description" placeholder="Project Description" v-model="description">
             <span class="icon is-small">
               <i class="fa fa-warning"></i>
             </span>
@@ -104,6 +104,14 @@ export default {
             })
             .then(response => alert('Success'))
             .catch(error => this.errors.record(error.response.data));
+        }
+    },
+    computed: {
+        nameIsDanger() {
+            return this.errors.has('name');
+        },
+        descriptionIsDanger() {
+            return this.errors.has('description');
         }
     }
 }
