@@ -16,7 +16,7 @@
               <i class="fa fa-check"></i>
             </span>
           </p>
-          <p class="help is-danger" v-text="errors.get('name')"></p>
+          <p class="help is-danger" v-if="errors.has('name')" v-text="errors.get('name')"></p>
         </div>
 
         <div class="field">
@@ -28,7 +28,7 @@
               <i class="fa fa-warning"></i>
             </span>
           </p>
-          <p class="help is-danger" v-text="errors.get('description')"></p>
+          <p class="help is-danger" v-if="errors.has('description')" v-text="errors.get('description')"></p>
         </div>
 
         <div class="field is-grouped">
@@ -59,6 +59,10 @@ mock.onPost('/projects').reply(422, {
 class Errors {
     constructor() {
         this.errors = {};
+    }
+
+    has(field) {
+        return this.errors.hasOwnProperty(field);
     }
 
     get(field) {
