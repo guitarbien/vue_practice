@@ -1,12 +1,26 @@
 <template>
   <div>
     <SectionHero>
-      <template slot="title">Object-Oriented Forms</template>
+      <template slot="title">Object-Oriented Forms 所有檢查都由後端 API 處理 (此處是以 mock 設定)</template>
       <template slot="subtitle">ES6 Class、<a href="https://vuejs.org/v2/guide/forms.html#Modifiers">Event Modifier</a>、Mock Adapter、$event.target.name</template>
     </SectionHero>
 
     <form action="" @submit.prevent="onSubmit" @keydown="errors.clear($event.target.name)">
       <div class="box">
+
+        <div class="field">
+          <p class="control">
+            <label class="radio">
+              <input type="radio" name="question" :value="radioYes" v-model="picked">
+              模擬 API 成功
+            </label>
+            <label class="radio">
+              <input type="radio" name="question" :value="radioNo" v-model="picked">
+              模擬 API 失敗
+            </label>
+          </p>
+        </div>
+
         <div class="field">
           <label class="label">Project Name</label>
           <p class="control has-icon has-icon-right">
@@ -47,17 +61,8 @@ import SectionHero from './components/SectionHero.vue';
 var axios = require('axios');
 var MockAdapter = require('axios-mock-adapter');
 
-
 // This sets the mock adapter on the default instance
 var mock = new MockAdapter(axios);
-
-// mock.onPost('/projects').reply(422, {
-//     name: ["The name field is required."],
-//     description: ["The description field is required."]
-// });
-mock.onPost('/projects').reply(200, {
-    message: "Added"
-});
 
 class Errors {
     constructor() {
@@ -93,6 +98,9 @@ export default {
     components: { SectionHero },
     data () {
         return {
+            radioYes: 'yes',
+            radioNo: 'no',
+            picked: 'no',
             name: '',
             description: '',
             errors: new Errors()
@@ -100,6 +108,9 @@ export default {
     },
     methods: {
         onSubmit () {
+            // decide axios result
+            this.setResult();
+
             // axios.post('/projects', this.$data);
             axios.post('/projects', {
                 name: this.name,
@@ -112,6 +123,21 @@ export default {
             alert(response.data.message);
             this.name = '';
             this.description = '';
+        },
+        setResult() {
+            if (this.picked == 'yes')
+            {
+                mock.onPost('/projects').reply(200, {
+                    message: "Added"
+                });
+            }
+            else
+            {
+                mock.onPost('/projects').reply(422, {
+                    name: ["The name field is required."],
+                    description: ["The description field is required."]
+                });
+            }
         }
     },
     computed: {
