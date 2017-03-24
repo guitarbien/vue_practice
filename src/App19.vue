@@ -33,7 +33,7 @@
 
         <div class="field is-grouped">
           <p class="control">
-            <button class="button is-primary">Submit</button>
+            <button class="button is-primary" :disabled="errors.any()">Submit</button>
           </p>
         </div>
 
@@ -63,6 +63,10 @@ class Errors {
 
     has(field) {
         return this.errors.hasOwnProperty(field);
+    }
+
+    any() {
+        return Object.keys(this.errors).length > 0;
     }
 
     get(field) {
