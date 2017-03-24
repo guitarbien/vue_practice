@@ -11,7 +11,7 @@
           <label class="label">Project Name</label>
           <p class="control has-icon has-icon-right">
           <!--  is-success -->
-            <input class="input" type="text" placeholder="Project Name" v-model="name">
+            <input class="input" type="text" placeholder="Project Name" v-model="name" @keydown="errors.clear('name')">
             <span class="icon is-small">
               <i class="fa fa-check"></i>
             </span>
@@ -23,7 +23,7 @@
           <label class="label">Project Description</label>
           <p class="control has-icon has-icon-right">
           <!-- is-danger -->
-            <input class="input" type="text" placeholder="Project Description" v-model="description">
+            <input class="input" type="text" placeholder="Project Description" v-model="description" @keydown="errors.clear('description')">
             <span class="icon is-small">
               <i class="fa fa-warning"></i>
             </span>
@@ -70,6 +70,10 @@ class Errors {
 
     record(errors) {
         this.errors = errors;
+    }
+
+    clear(field) {
+        delete this.errors[field];
     }
 }
 
