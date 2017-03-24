@@ -2,7 +2,7 @@
   <div>
     <SectionHero>
       <template slot="title">Object-Oriented Forms</template>
-      <template slot="subtitle">ES6 Class、<a href="https://vuejs.org/v2/guide/forms.html#Modifiers">Event Modifier</a></template>
+      <template slot="subtitle">ES6 Class、<a href="https://vuejs.org/v2/guide/forms.html#Modifiers">Event Modifier</a>、Mock Adapter、$event.target.name</template>
     </SectionHero>
 
     <form action="" @submit.prevent="onSubmit" @keydown="errors.clear($event.target.name)">
