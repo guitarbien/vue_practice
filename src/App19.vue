@@ -59,10 +59,9 @@
 <script>
 import SectionHero from './components/SectionHero.vue';
 var axios = require('axios');
-var MockAdapter = require('axios-mock-adapter');
+const MockAdapter = require('axios-mock-adapter');
 
 // This sets the mock adapter on the default instance
-var mock = new MockAdapter(axios);
 
 class Errors {
     constructor() {
@@ -138,6 +137,8 @@ export default {
             this.description = '';
         },
         setResult() {
+            let mock = new MockAdapter(axios);
+
             if (this.form.picked == 'yes')
             {
                 mock.onPost('/projects').reply(200, {
