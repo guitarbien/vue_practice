@@ -99,6 +99,7 @@ class Errors {
 
 class Form {
     constructor(data) {
+        this.originalData = data;
 
         for (let field in data) {
             this[field] = data[field];
@@ -117,6 +118,12 @@ class Form {
         return data;
     }
 
+    reset() {
+        for (let field in this.originalData) {
+            this[field] = null;
+        }
+    }
+
     submit(requestType, url) {
         // axios.post('/projects', this.$data);
         axios[requestType](url, this.data())
@@ -127,6 +134,7 @@ class Form {
     onSuccess(response) {
         alert(response.data.message);
         this.errors.clear();
+        this.reset();
     }
 
     onFail(error) {
