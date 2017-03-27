@@ -11,11 +11,11 @@
         <div class="field">
           <p class="control">
             <label class="radio">
-              <input type="radio" name="question" :value="radioYes" v-model="picked">
+              <input type="radio" name="question" :value="form.radioYes" v-model="form.picked">
               模擬 API 成功
             </label>
             <label class="radio">
-              <input type="radio" name="question" :value="radioNo" v-model="picked">
+              <input type="radio" name="question" :value="form.radioNo" v-model="form.picked">
               模擬 API 失敗
             </label>
           </p>
@@ -25,7 +25,7 @@
           <label class="label">Project Name</label>
           <p class="control has-icon has-icon-right">
           <!--  is-success -->
-            <input class="input" :class="{ 'is-danger': nameIsDanger }" type="text" name="name" placeholder="Project Name" v-model="name">
+            <input class="input" :class="{ 'is-danger': nameIsDanger }" type="text" name="name" placeholder="Project Name" v-model="form.name">
             <span class="icon is-small">
               <i class="fa fa-check"></i>
             </span>
@@ -37,7 +37,7 @@
           <label class="label">Project Description</label>
           <p class="control has-icon has-icon-right">
           <!-- is-danger -->
-            <input class="input" :class="{ 'is-danger': descriptionIsDanger }" type="text" name="description" placeholder="Project Description" v-model="description">
+            <input class="input" :class="{ 'is-danger': descriptionIsDanger }" type="text" name="description" placeholder="Project Description" v-model="form.description">
             <span class="icon is-small">
               <i class="fa fa-warning"></i>
             </span>
@@ -93,17 +93,28 @@ class Errors {
     }
 }
 
+class Form {
+    constructor(data) {
+
+        for (let field in data) {
+            this[field] = data[field];
+        }
+    }
+    }
+}
+
 export default {
     name: 'app',
     components: { SectionHero },
     data () {
         return {
-            radioYes: 'yes',
-            radioNo: 'no',
-            picked: 'no',
-            name: '',
-            description: '',
-            errors: new Errors()
+            form: new Form({
+                radioYes: 'yes',
+                radioNo: 'no',
+                picked: 'no',
+                name: '',
+                description: ''
+            })
         }
     },
     methods: {
@@ -125,7 +136,7 @@ export default {
             this.description = '';
         },
         setResult() {
-            if (this.picked == 'yes')
+            if (this.form.picked == 'yes')
             {
                 mock.onPost('/projects').reply(200, {
                     message: "Added"
