@@ -88,7 +88,12 @@ class Errors {
     }
 
     clear(field) {
-        delete this.errors[field];
+        if (field) {
+            delete this.errors[field];
+            return;
+        }
+
+        this.errors = {};
     }
 }
 
@@ -101,6 +106,31 @@ class Form {
 
         this.errors = new Errors();
     }
+
+    data() {
+        // clone the object
+        let data = Object.assign({}, this);
+
+        delete data.originalData;
+        delete data.errors;
+
+        return data;
+    }
+
+    submit(requestType, url) {
+        // axios.post('/projects', this.$data);
+        axios[requestType](url, this.data())
+            .then(this.onSuccess.bind(this))
+            .catch(this.onFail.bind(this));
+    }
+
+    onSuccess(response) {
+        alert(response.data.message);
+        this.errors.clear();
+    }
+
+    onFail(error) {
+        this.errors.record(error.response.data);
     }
 }
 
@@ -123,18 +153,7 @@ export default {
             // decide axios result
             this.setResult();
 
-            // axios.post('/projects', this.$data);
-            axios.post('/projects', {
-                name: this.name,
-                description: this.description
-            })
-            .then(this.onSuccess)
-            .catch(error => this.errors.record(error.response.data));
-        },
-        onSuccess(response) {
-            alert(response.data.message);
-            this.name = '';
-            this.description = '';
+            this.form.submit('post', '/projects');
         },
         setResult() {
             let mock = new MockAdapter(axios);
