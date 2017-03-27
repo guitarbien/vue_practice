@@ -5,7 +5,7 @@
       <template slot="subtitle">ES6 Class、<a href="https://vuejs.org/v2/guide/forms.html#Modifiers">Event Modifier</a>、Mock Adapter、$event.target.name</template>
     </SectionHero>
 
-    <form action="" @submit.prevent="onSubmit" @keydown="errors.clear($event.target.name)">
+    <form action="" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)">
       <div class="box">
 
         <div class="field">
@@ -30,7 +30,7 @@
               <i class="fa fa-check"></i>
             </span>
           </p>
-          <p class="help is-danger" v-if="errors.has('name')" v-text="errors.get('name')"></p>
+          <p class="help is-danger" v-if="form.errors.has('name')" v-text="form.errors.get('name')"></p>
         </div>
 
         <div class="field">
@@ -42,12 +42,12 @@
               <i class="fa fa-warning"></i>
             </span>
           </p>
-          <p class="help is-danger" v-if="errors.has('description')" v-text="errors.get('description')"></p>
+          <p class="help is-danger" v-if="form.errors.has('description')" v-text="form.errors.get('description')"></p>
         </div>
 
         <div class="field is-grouped">
           <p class="control">
-            <button class="button is-primary" :disabled="errors.any()">Submit</button>
+            <button class="button is-primary" :disabled="form.errors.any()">Submit</button>
           </p>
         </div>
 
@@ -99,6 +99,8 @@ class Form {
         for (let field in data) {
             this[field] = data[field];
         }
+
+        this.errors = new Errors();
     }
     }
 }
@@ -153,10 +155,10 @@ export default {
     },
     computed: {
         nameIsDanger() {
-            return this.errors.has('name');
+            return this.form.errors.has('name');
         },
         descriptionIsDanger() {
-            return this.errors.has('description');
+            return this.form.errors.has('description');
         }
     }
 }
