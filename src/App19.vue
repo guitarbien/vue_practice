@@ -2,7 +2,7 @@
   <div>
     <SectionHero>
       <template slot="title">Object-Oriented Forms 所有檢查都由後端 API 處理 (此處是以 mock 設定)</template>
-      <template slot="subtitle">ES6 Class、<a href="https://vuejs.org/v2/guide/forms.html#Modifiers">Event Modifier</a>、Mock Adapter、$event.target.name、Clone object => Object.assign({}, this);</template>
+      <template slot="subtitle">ES6 Class、<a href="https://vuejs.org/v2/guide/forms.html#Modifiers">Event Modifier</a>、Mock Adapter、$event.target.name、Clone object => Object.assign({}, this);、ES6 Promise</template>
     </SectionHero>
 
     <form action="" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)">
@@ -127,10 +127,10 @@ class Form {
     }
 
     submit(requestType, url) {
-        return new Promise((resolve, reject) {
+        return new Promise((resolve, reject) => {
             // axios.post('/projects', this.$data);
             axios[requestType](url, this.data())
-                .then(response => => {
+                .then(response => {
                     this.onSuccess(response.data);
                     resolve(response.data);
                 })
@@ -139,7 +139,6 @@ class Form {
                     reject(error.response.data);
                 });
         });
-
     }
 
     onSuccess(data) {
