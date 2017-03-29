@@ -109,11 +109,11 @@ class Form {
     }
 
     data() {
-        // clone the object
-        let data = Object.assign({}, this);
+        let data = {};
 
-        delete data.originalData;
-        delete data.errors;
+        for (let property in this.property) {
+            data[property] = this[property];
+        }
 
         return data;
     }
@@ -124,6 +124,10 @@ class Form {
         }
 
         this.errors.clear();
+    }
+
+    post(url) {
+        return this.submit('post', url);
     }
 
     submit(requestType, url) {
@@ -170,7 +174,7 @@ export default {
             // decide axios result
             this.setResult();
 
-            this.form.submit('post', '/projects')
+            this.form.post('/projects')
                 .then(data => console.log(data))
                 .catch(error => console.log(error));
         },
