@@ -122,6 +122,8 @@ class Form {
         for (let field in this.originalData) {
             this[field] = null;
         }
+
+        this.errors.clear();
     }
 
     submit(requestType, url) {
@@ -142,7 +144,6 @@ class Form {
 
     onSuccess(data) {
         alert(data.message);
-        this.errors.clear();
         this.reset();
     }
 
@@ -171,7 +172,8 @@ export default {
             this.setResult();
 
             this.form.submit('post', '/projects')
-                .then(data => alert('Handling it!'));
+                .then(data => console.log(data))
+                .catch(error => console.log(error));
         },
         setResult() {
             let mock = new MockAdapter(axios);
