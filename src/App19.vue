@@ -2,7 +2,7 @@
   <div>
     <SectionHero>
       <template slot="title">Object-Oriented Forms 所有檢查都由後端 API 處理 (此處是以 mock 設定)</template>
-      <template slot="subtitle">ES6 Class、<a href="https://vuejs.org/v2/guide/forms.html#Modifiers">Event Modifier</a>、Mock Adapter、$event.target.name</template>
+      <template slot="subtitle">ES6 Class、<a href="https://vuejs.org/v2/guide/forms.html#Modifiers">Event Modifier</a>、Mock Adapter、$event.target.name、Clone object => Object.assign({}, this);</template>
     </SectionHero>
 
     <form action="" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)">
@@ -125,20 +125,29 @@ class Form {
     }
 
     submit(requestType, url) {
-        // axios.post('/projects', this.$data);
-        axios[requestType](url, this.data())
-            .then(this.onSuccess.bind(this))
-            .catch(this.onFail.bind(this));
+        return new Promise((resolve, reject) {
+            // axios.post('/projects', this.$data);
+            axios[requestType](url, this.data())
+                .then(response => => {
+                    this.onSuccess(response.data);
+                    resolve(response.data);
+                })
+                .catch(error => {
+                    this.onFail(error.response.data);
+                    reject(error.response.data);
+                });
+        });
+
     }
 
-    onSuccess(response) {
-        alert(response.data.message);
+    onSuccess(data) {
+        alert(data.message);
         this.errors.clear();
         this.reset();
     }
 
-    onFail(error) {
-        this.errors.record(error.response.data);
+    onFail(errors) {
+        this.errors.record(errors);
     }
 }
 
@@ -161,7 +170,8 @@ export default {
             // decide axios result
             this.setResult();
 
-            this.form.submit('post', '/projects');
+            this.form.submit('post', '/projects')
+                .then(data => alert('Handling it!'));
         },
         setResult() {
             let mock = new MockAdapter(axios);
