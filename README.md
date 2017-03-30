@@ -14,3 +14,4 @@ Following the series: [Learn Vue2: Step By Step](https://laracasts.com/series/le
 16. [使用 vue-cli 配 webpack-simple template 來建立專案](https://guitarbien.github.io/vue_practice/index16.html)
 18. [使用 axios 和 ES6 Arrow function](https://guitarbien.github.io/vue_practice/index18.html)
 19. [Form 範例，使用 ES6 class 做錯誤處理 (因為沒有後端程式，故使用 mock 來模擬 api 回應)](https://guitarbien.github.io/vue_practice/index19.html)
+20. [客製包含 validation 的 input](https://guitarbien.github.io/vue_practice/index25.html)
